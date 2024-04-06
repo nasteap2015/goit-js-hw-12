@@ -4,14 +4,7 @@ import axios from 'axios';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-import {
-  gallery,
-  input,
-  loader,
-  pages,
-  requestedValue,
-  loadButton,
-} from '../main.js';
+import { gallery, loader, pages, requestedValue, loadButton } from '../main.js';
 
 let limitOfPages = 0;
 

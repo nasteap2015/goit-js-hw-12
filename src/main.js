@@ -26,6 +26,7 @@ loader.setAttribute('hidden', true);
 
 form.addEventListener('submit', async event => {
   event.preventDefault();
+  pages = 1;
   requestedValue = input.value;
   if (event.target.elements.keyword.value === '') {
     iziToast.error({
