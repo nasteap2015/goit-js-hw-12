@@ -43,12 +43,10 @@ form.addEventListener('submit', async event => {
   ScrollBy();
   form.reset();
   if (pages >= limitOfPages) {
-    iziToast.error({
+    iziToast.info({
       message: "We're sorry, but you've reached the end of search results.",
       position: 'topRight',
-      backgroundColor: '#39CCE6',
       progressBar: false,
-      messageColor: '#fafafb',
     });
     loadButton.hidden = true;
   } else {

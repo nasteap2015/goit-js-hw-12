@@ -38,12 +38,10 @@ export async function fetchMoreImg() {
   });
   const response = await axios.get(`https://pixabay.com/api/?${options}`);
   if (pages >= limitOfPages) {
-    iziToast.error({
+    iziToast.info({
       message: "We're sorry, but you've reached the end of search results.",
       position: 'topRight',
-      backgroundColor: '#39CCE6',
       progressBar: false,
-      messageColor: '#fafafb',
     });
     loadButton.hidden = true;
   }
