@@ -41,7 +41,7 @@ export async function fetchMoreImg() {
     iziToast.error({
       message: "We're sorry, but you've reached the end of search results.",
       position: 'topRight',
-      backgroundColor: '#ef4040',
+      backgroundColor: '#39CCE6',
       progressBar: false,
       messageColor: '#fafafb',
     });
