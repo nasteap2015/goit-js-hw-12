@@ -6,7 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 import { gallery, loader, pages, requestedValue, loadButton } from '../main.js';
 
-let limitOfPages = 0;
+export let limitOfPages = 0;
 
 export async function fetchImg() {
   loadButton.hidden = true;
@@ -22,8 +22,7 @@ export async function fetchImg() {
     page: pages,
   });
   const response = await axios.get(`https://pixabay.com/api/?${options}`);
-  limitOfPages = response.data.totalHits % options.get('per_page');
-  console.log(limitOfPages);
+  limitOfPages = Math.ceil(response.data.totalHits / options.get('per_page'));
   return response.data;
 }
 
@@ -37,6 +36,7 @@ export async function fetchMoreImg() {
     per_page: '15',
     page: pages,
   });
+  const response = await axios.get(`https://pixabay.com/api/?${options}`);
   if (pages > limitOfPages) {
     iziToast.error({
       message: "We're sorry, but you've reached the end of search results.",
@@ -46,9 +46,6 @@ export async function fetchMoreImg() {
       messageColor: '#fafafb',
     });
     loadButton.hidden = true;
-    return;
-  } else {
-    const response = await axios.get(`https://pixabay.com/api/?${options}`);
-    return response.data;
   }
+  return response.data;
 }

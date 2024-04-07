@@ -6,7 +6,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-import { fetchImg, fetchMoreImg } from './js/pixabay-api.js';
+import { fetchImg, fetchMoreImg, limitOfPages } from './js/pixabay-api.js';
 import { renderImg } from './js/render-functions.js';
 
 const form = document.querySelector('form');
@@ -41,9 +41,20 @@ form.addEventListener('submit', async event => {
   const img = await fetchImg();
   renderImg(img);
   ScrollBy();
-  pages += 1;
   form.reset();
-  loadButton.hidden = false;
+  if (pages >= limitOfPages) {
+    iziToast.error({
+      message: "We're sorry, but you've reached the end of search results.",
+      position: 'topRight',
+      backgroundColor: '#ef4040',
+      progressBar: false,
+      messageColor: '#fafafb',
+    });
+    loadButton.hidden = true;
+  } else {
+    loadButton.hidden = false;
+  }
+  pages += 1;
 });
 
 loadButton.addEventListener('click', async event => {
